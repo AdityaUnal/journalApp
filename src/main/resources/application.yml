@@ -1,0 +1,59 @@
+spring :
+  application:
+    name : journal
+  main:
+    allow-circular-references: true
+  server:
+    port: 8080  
+  data : 
+    mongodb:
+      uri: mongodb+srv://adityaunal:AsGs5FzVUPLQwqkK@laflamme.u1zyt.mongodb.net/?retryWrites=true&w=majority&appName=LaFlamme
+      database : jornaldb
+      auto-index-creation : true
+  mail:
+    host: smtp.gmail.com  
+    port: 587 
+    username: adityaunalepic@gmail.com
+    password: bwvy juqy ofzt cknw
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  redis:
+    host : redis-17898.crce179.ap-south-1-1.ec2.redns.redis-cloud.com
+    port : 17898
+    password: d9kjTFmYyDENmQo1bFO2ylGePcIM5Ex2
+  kafka:
+    bootstrap-servers: pkc-9q8rv.ap-south-2.aws.confluent.cloud:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: weekly-sentiments-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.aditya.journal.model
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='3GDTJG2OKA2ZDAMZ' password='kMhgkaTvJZsBjg7aaFmwnZnmIp8+sy7ReYrnUY+7eXFcCIgG6yjE0Ablzds8sYBR';
+      session:
+        timeout:
+          ms: 45000 # 45s
+weather:
+  api:
+    key: 3873f3b43578c7a7ad1c7f41badcfbde
+
+springdoc:
+  swagger-ui:
+    path: /docs
