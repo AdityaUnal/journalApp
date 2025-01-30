@@ -14,7 +14,7 @@ spring :
     host: smtp.gmail.com  
     port: 587 
     username: adityaunalepic@gmail.com
-    password: bwvy juqy ofzt cknw
+    password: xxxx xxxx xxxx xxxx
     properties:
       mail:
         smtp:
@@ -24,8 +24,8 @@ spring :
             required: true
   redis:
     host : redis-17898.crce179.ap-south-1-1.ec2.redns.redis-cloud.com
-    port : 17898
-    password: d9kjTFmYyDENmQo1bFO2ylGePcIM5Ex2
+    port : xxxx
+    password : xxxx
   kafka:
     bootstrap-servers: pkc-9q8rv.ap-south-2.aws.confluent.cloud:9092
     producer:
@@ -46,13 +46,13 @@ spring :
       sasl:
         mechanism: PLAIN
         jaas:
-          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='3GDTJG2OKA2ZDAMZ' password='kMhgkaTvJZsBjg7aaFmwnZnmIp8+sy7ReYrnUY+7eXFcCIgG6yjE0Ablzds8sYBR';
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='USERNAME' password = 'PASSWORD';
       session:
         timeout:
           ms: 45000 # 45s
 weather:
   api:
-    key: 3873f3b43578c7a7ad1c7f41badcfbde
+    key: xxxx
 
 springdoc:
   swagger-ui:
