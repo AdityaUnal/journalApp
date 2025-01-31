@@ -42,7 +42,7 @@ public class journalController {
     private UserEntryService userEntryService;
 
     @PostMapping
-    @Operation(summary = "adds a jounral entry of a user")
+    @Operation(summary = "adds a journal entry of a user")
     public ResponseEntity<?> addJournal(@RequestBody JournalEntity journal){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserEntity user = userEntryService.findByUsername(authentication.getName());
@@ -51,7 +51,7 @@ public class journalController {
     }
     
     @GetMapping
-    @Operation(summary = "returns jounral entry of the user")
+    @Operation(summary = "returns journal entry of the user")
     public ResponseEntity<List<JournalEntity>> getALLjournalEntries(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserEntity user = userEntryService.findByUsername(authentication.getName());
@@ -66,7 +66,7 @@ public class journalController {
     }
     
     @GetMapping("id/{myid}")
-    @Operation(summary = "returns jounral entry of the given id")
+    @Operation(summary = "returns journal entry of the given id")
     public ResponseEntity<Optional<JournalEntity>> getEntry(@PathVariable ObjectId myid){
         Optional<JournalEntity> JournalEntry = journalEntryService.getEntry(myid);
         if(JournalEntry.isPresent()){
@@ -79,14 +79,15 @@ public class journalController {
     
     
     @DeleteMapping("id/{myid}")
-    @Operation(summary = "deletes jounral entry of the given id")
-    public ResponseEntity<?> deleteEntry(@PathVariable ObjectId myid){
+    @Operation(summary = "deletes journal entry of the given id")
+    public ResponseEntity<?> deleteEntry(@PathVariable String myid){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        ObjectId obj = new ObjectId(myid);
         UserEntity user = userEntryService.findByUsername(authentication.getName());
-        Optional<JournalEntity> journal = journalEntryService.getEntry(myid);
+        Optional<JournalEntity> journal = journalEntryService.getEntry(obj);
         if(user!=null && journal.isPresent()){
             user.getJournalEntries().removeIf(x->x.getId().equals(myid));
-            journalEntryService.deleteEntry(myid);
+            journalEntryService.deleteEntry(obj);
             userEntryService.saveUser(user);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -97,9 +98,10 @@ public class journalController {
     }
 
     @PutMapping("id/{myid}")
-    public ResponseEntity<JournalEntity> modifyEntry(@PathVariable ObjectId myid,@RequestBody JournalEntity newEntity){
-        JournalEntity journalEntry = journalEntryService.getEntry(myid).orElse(null); 
-        
+    @Operation(summary = "Modify user entry")
+    public ResponseEntity<JournalEntity> modifyEntry(@PathVariable String myid,@RequestBody JournalEntity newEntity){
+        ObjectId obj = new ObjectId(myid);
+        JournalEntity journalEntry = journalEntryService.getEntry(obj).orElse(null); 
         if(journalEntry!=null){
             if(newEntity.getTitle()!=null && newEntity.getTitle()!="")
             journalEntry.setTitle(newEntity.getTitle());

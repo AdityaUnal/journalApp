@@ -1,4 +1,13 @@
 spring :
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 601373365286-k0v6tso23c0fgrlkehvce1s30jfmluds.apps.googleusercontent.com
+            # clientId: 407408718192.apps.googleusercontent.com
+            clientSecret: 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
+
   application:
     name : journal
   main:
