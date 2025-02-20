@@ -4,9 +4,8 @@ spring :
       client:
         registration:
           google:
-            clientId: 601373365286-k0v6tso23c0fgrlkehvce1s30jfmluds.apps.googleusercontent.com
-            # clientId: 407408718192.apps.googleusercontent.com
-            clientSecret: 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
+            clientId: ${google.oauth,client-id}
+            clientSecret: ${google.auth.client-secret}
 
   application:
     name : journal
