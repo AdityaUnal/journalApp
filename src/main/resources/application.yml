@@ -35,7 +35,7 @@ spring :
     port : xxxx
     password : xxxx
   kafka:
-    bootstrap-servers: pkc-9q8rv.ap-south-2.aws.confluent.cloud:9092
+    bootstrap-servers: {cloud_name}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
