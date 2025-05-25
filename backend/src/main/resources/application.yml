@@ -15,7 +15,7 @@ spring :
     port: 8080  
   data : 
     mongodb:
-      uri: mongodb+srv://adityaunal:AsGs5FzVUPLQwqkK@laflamme.u1zyt.mongodb.net/?retryWrites=true&w=majority&appName=LaFlamme
+      uri: xxxx
       database : jornaldb
       auto-index-creation : true
   mail:
